@@ -1,0 +1,98 @@
+
+\documentclass[oneside,final,12pt]{article} %одностороння печать, чистовая версия, размер кегля, класс документа
+\usepackage{ucs} 
+\usepackage[utf8x]{inputenc} 
+\usepackage[T2A, T1]{fontenc} 
+\usepackage[english,russian]{babel} %оформление кириллицей (подписи к таблицам и т.д.)
+\usepackage{ifpdf}
+\usepackage{float} %для плавающих картинок и таблиц
+%\usepackage{wrapfig} %для плавающих картинок.
+
+
+\ifpdf  %% если используется pdfTEX
+\usepackage{cmap}  %поиск по кириллице в готовом pdf
+\usepackage[pdftex]{graphicx} %работа с графикой 
+\usepackage[unicode=true]{hyperref}
+\usepackage{pdfpages}
+\else   %% если используется не pdfTEX
+\usepackage[dvips]{graphicx}
+\fi
+ 
+
+\usepackage{vmargin} %размеры полос набора
+\setpapersize{A4} %формат бумаги
+\setmarginsrb{30mm}{25mm}{25mm}{25mm}{0pt}{0mm}{0pt}{13mm} %размеры полей: левое, верхнее, правое, нижнее, 3*колонтитулы, расстояние между нижним краем нижней строки и нижним краем номера страницы
+\usepackage{indentfirst} %красная строка для первого абзаца главы или параграфа
+\sloppy %борьба с залезанием строк на поля путём изменения размеров пробелов
+\usepackage{amsmath} %дополнительные средства для вёрстки формул
+\everymath{\displaystyle}
+\usepackage{breqn} %для dmath разбить длинную формулу
+%\usepackage{esvect} %vectors
+
+%\usepackage{amscd} %диаграммы
+\usepackage{amsfonts} %дополнительные шрифты для формул
+\usepackage{amssymb} %дополнительные символы для формул
+\usepackage[nottoc,notlot,notlof]{tocbibind}
+
+\pagestyle{plain} %включена нумерация страниц 
+\renewcommand{\thesection}{\arabic{section}} %одинарная нумерация формул
+
+
+
+%\usepackage{tocloft}
+%\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+
+\usepackage{verbatim} %comments
+
+\usepackage[font=small]{caption}
+\usepackage{booktabs} %отступы в tabular
+\usepackage{colortbl} %раскаршивание таблиц
+\usepackage{xcolor} %название цветов
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\definecolor{dark-dark-gray}{gray}{0.3}
+\newcommand{\gray}[1]{\textcolor{dark-dark-gray}{#1}}
+
+%\definecolor{dark-gray}{rgb}{}
+\definecolor{dark-gray}{gray}{0.4}
+\newcommand{\graytable}[0]{\arrayrulecolor{dark-gray}}
+\newcommand{\thinrule}[0]{\specialrule{0.3pt}{4pt}{4pt}}
+\newcommand{\verythinrule}[0]{\specialrule{0.1pt}{1pt}{1pt}}
+\newcommand{\invisiblerule}[0]{\specialrule{0pt}{2pt}{2pt}}
+
+
+\usepackage{lineno} %нумерация всех строк для отладки
+\usepackage{enumitem} %особенности enumerate
+\usepackage{pbox} % для переносов внутри ячейки таблицы
+\usepackage{array} %??
+\usepackage{longtable}% перенос таблиц на страницах
+
+\newlength{\width}
+\setlength{\width}{0.97\textwidth}
+%\setlength{\width}{0.9\textwidth}
+\setlength{\parindent}{3em}
+\setlength{\parskip}{0.3em}
+
+\usepackage{textgreek} % \textalpha греческие буквы не в math mode
+\usepackage{subcaption} % несколько картинок в одной
+\usepackage{multirow} % объединение ячеек
+\setcounter{tocdepth}{2} % глубина содержания
+
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+%\usepackage{natbib} %bibliography styles
+\usepackage{setspace} %for setstretch
+\usepackage{cite}
+
+
+
+\begin{document}
+		%\linenumbers
+        \include{titlepage} \newpage
+        \tableofcontents \newpage
+        \include{abbreviations} \newpage
+        \include{introduction}
+        \include{literature}
+        \include{methods}
+        \include{results} \newpage
+        \footnotesize \bibliographystyle{mybib5.bst}  % стилевой файл для оформления по ГОСТу  utf8gost705u, ieeetr для курсовой, cell  -- черновик
+        \bibliography{bib.bib}
+\end{document}
